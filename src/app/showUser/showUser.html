@@ -1,0 +1,34 @@
+<h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-align: center;"> All USERS</h1>
+
+<br>
+<input type="number" />&nbsp;&nbsp;
+<button type="button" class="btn btn-secondary" >Search</button>
+
+<table class="table table-striped table table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>User Id</th>
+        <th>Email Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Password</th>
+        <th>Mobile No</th>
+        <th>Address</th>
+        <th>Photo</th>
+
+    </tr>
+    </thead>
+    <tr *ngFor="let data of user, let i= index">
+        <td>{{data.userId}}</td>
+        <td>{{data.emailid}}</td>
+        <td>{{data.firstName}}</td>
+        <td>{{data.lastName}}</td>
+        <td>{{data.password}}</td>
+        <td>{{data.mobileNo}}</td>
+        <td>{{data.address}}</td>
+        <td>{{data.photo}}</td>
+
+
+    </tr>
+</table>
+<button type="button" class="btn btn-secondary" (click)="backtoadmin()" >Back To Home</button>

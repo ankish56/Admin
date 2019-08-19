@@ -1,0 +1,17 @@
+<h1>Add Promo Code</h1>
+<form #PromoForm=ngForm >
+<table class="table table-striped table table-hover">
+    <tr>
+            <td>Promo Code Name</td><td>
+                <input type="text" name="name" id="pname" [(ngModel)]="promocode"#namecontrol="ngModel" required/></td>
+                <span *ngIf="namecontrol.touched && namecontrol.invalid">Promo Code Name  should not be empty</span>
+        </tr>
+    <tr>
+        <input class="btn btn-primary" type="submit" value="ADD" (click)="save();change()" [disabled]="PromoForm.invalid"/>
+    </tr>
+</table>
+</form>
+<table class="table table-striped table table-hover">
+        <tr *ngIf="ch">Promo Code Added Successfully</tr>
+</table>
+<button type="button" class="btn btn-secondary" (click)="backtopromoCode()" >Back To Promocode</button>

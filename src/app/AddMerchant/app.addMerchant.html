@@ -1,0 +1,237 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>
+        Add Merchant
+    </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+
+        .rate:not(:checked)>input {
+            position: absolute;
+            top: -9999px;
+        }
+
+        .rate:not(:checked)>label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
+        }
+
+        .rate:not(:checked)>label:before {
+            content: '★ ';
+        }
+
+        .rate>input:checked~label {
+            color: #ffc700;
+        }
+
+        .rate:not(:checked)>label:hover,
+        .rate:not(:checked)>label:hover~label {
+            color: #deb217;
+        }
+
+        .rate>input:checked+label:hover,
+        .rate>input:checked+label:hover~label,
+        .rate>input:checked~label:hover,
+        .rate>input:checked~label:hover~label,
+        .rate>label:hover~input:checked~label {
+            color: #c59b08;
+        }
+    </style>
+</head>
+<h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-align: center;">Add Merchant</h1>
+<section>
+    <div class="container-fluid w-60 mt-5">
+        <div class="w-50 mx-auto">
+
+            <form #merchantForm="ngForm" name="signUpForm" (ngSubmit)="addMerchant()">
+
+
+                <div class="form-group">
+                    <label for="inputname">Enter First Name</label>
+                    <input type="text" maxlength="20" pattern="[a-zA-Z]*" id="firstName" name="firstName"
+                        class="form-control" [(ngModel)]="firstName" #firstNamecontrol="ngModel"
+                        placeholder="Enter Merchant First Name" required autocomplete="off"
+                        aria-describedby="merchantNameHelp">
+                    <small id="merchantNameHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="firstNamecontrol.touched && firstNamecontrol.invalid && !
+
+firstNamecontrol.errors?.pattern">
+                        First Name is required</small>
+                    <small id="merchantNameHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="firstNamecontrol.touched && firstNamecontrol.errors?.pattern &&
+
+firstNamecontrol.invalid">
+                        Invalid First Name
+                    </small>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputname">Enter Last Name</label>
+                    <input type="text" maxlength="20" pattern="[a-zA-Z]*" id="lastName" name="lastName"
+                        class="form-control" [(ngModel)]="lastName" #lastNamecontrol="ngModel" autocomplete="off"
+                        required class="form-control" placeholder="Enter Merchant Last Name" required
+
+autocomplete="off"
+                        aria-describedby="merchantLastNameHelp">
+                    <small id="merchantLastNameHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="lastNamecontrol.touched && lastNamecontrol.invalid && !
+
+lastNamecontrol.errors?.pattern">
+                        Last Name is required </small>
+                    <small id="merchantLastNameHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="lastNamecontrol.touched && lastNamecontrol.errors?.pattern &&
+
+lastNamecontrol.invalid">
+                        Invalid Last Name
+                    </small>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputcompany">Enter Company</label>
+                    <input type="text" maxlength="20" pattern="[a-zA-Z]*" id="company" name="company"
+
+autocomplete="off"
+                        [(ngModel)]="company" #companycontrol="ngModel" required class="form-control"
+                        placeholder="Enter Merchant Company" aria-describedby="merchantCompanyHelp">
+                    <small id="merchantCompanyHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="companycontrol.touched && companycontrol.invalid && !
+
+companycontrol.errors?.pattern">
+                        Company Name is required</small>
+                    <small id="merchantCompanyHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="companycontrol.touched && companycontrol.errors?.pattern && companycontrol.invalid">
+                        Invalid Company Name
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputemail"> Enter EmailId</label>
+                    <input type="text" maxlength="20" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                        id="emailid" name="emailid" autocomplete="off" [(ngModel)]="emailid"
+
+#emailcontrol="ngModel"
+                        required class="form-control" placeholder="Enter Merchant Email" aria-
+
+describedby="emailHelp">
+
+                    <small id="emailHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="emailcontrol.touched && emailcontrol.invalid && !emailcontrol.errors?.pattern">
+                        Email is required</small>
+                    <small id="emailHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="emailcontrol.touched && emailcontrol.errors?.pattern && emailcontrol.invalid">
+                        Invalid Email Id
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="inputmobile"> Enter Mobile Number</label>
+                    <input type="number" pattern="[1-9][0-9]{9}" id="mobileNo" name="mobileNo" [(ngModel)]
+
+="mobileno"
+                        #mobileNocontrol="ngModel" required autocomplete="off" class="form-control"
+                        placeholder="Enter Merchant Mobile" aria-describedby="mobileHelp">
+                    <small id="mobileHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="mobileNocontrol.touched && mobileNocontrol.invalid && !
+
+mobileNocontrol.errors?.pattern">
+                        Mobile Number is required</small>
+                    <small id="mobileHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="mobileNocontrol.touched && mobileNocontrol.errors?.pattern &&
+
+mobileNocontrol.invalid">
+                        Mobile Number must be of 10 digits
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="inputpassword"> Enter Password</label>
+                    <input type="password" maxlength="20" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%]).{8,20})"
+                        id="password" name="password" [(ngModel)]="password" #passwordcontrol="ngModel" (change)="print(passwordcontrol)"
+                        autocomplete="off" required class="form-control" placeholder="Enter Merchant Password"
+                        aria-describedby="passwordHelp">
+                    <small id="passwordHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="passwordcontrol.touched && passwordcontrol.invalid && !
+
+passwordcontrol.errors?.pattern">
+                        Password is required</small>
+                    <small id="passwordHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="passwordcontrol.touched && passwordcontrol.errors?.pattern &&    passwordcontrol.invalid">
+                        Password must contain lowercase, uppercase and special characters (8-20) characters
+
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="inputphoto">Upload Photo</label>
+                    <input type="file" id="photo" name="photo" autocomplete="off" [(ngModel)]="photo"
+                        #photocontrol="ngModel" required (change)="onSelectFile($event.target.files)" required
+                        class="form-control" aria-describedby="photoHelp">
+                    <small id="photoHelp" class="form-text text-muted alert alert-danger" role="alert"
+                        *ngIf="photocontrol.touched && photocontrol.invalid ">
+                        Profile Image is required
+                    </small>
+                </div>
+                <div class="form-group">
+                    <div>
+<label >Rating</label></div>
+                    <div class="rate">
+                    <input type="radio" id="star5" name="rating" value="5"  [(ngModel)]="rating" #ratingcontrol="ngModel" required />
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="rating" value="4" [(ngModel)]="rating" #ratingcontrol="ngModel" />
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="rating" value="3" [(ngModel)]="rating" #ratingcontrol="ngModel" />
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="rating" value="2" [(ngModel)]="rating" #ratingcontrol="ngModel" />
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="rating" value="1"  [(ngModel)]="rating" #ratingcontrol="ngModel" />
+                    <label for="star1" title="text">1 star</label>
+                </div>
+
+                <div *ngIf="ratingcontrol.touched && ratingcontrol.invalid">
+                    Rating is required</div>
+
+                </div>
+
+
+
+<br>
+                <div class="form-group">
+
+                  </div>
+<label for="assuredMerchant">
+                                    Is Merchant CapStore Assured?
+                      </label>
+<input type="checkbox" name="assuredMerchant" id="assuredMerchant" [checked]="check" (change)="onCheckboxValueChange()"
+                    ngModel value="Assured Merchant">
+
+
+
+
+                <div>
+
+                    <input type="submit" value="Add Merchant" [disabled]="merchantForm.invalid"
+                        class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<button type="button" class="btn btn-secondary" (click)="backtomerchant()" >Back To Merchant</button>

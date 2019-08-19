@@ -1,0 +1,57 @@
+<div style="padding-left: 10px; padding-right: 10px;">
+  <div style="background-color:gainsboro">
+<div class="container">
+<h3 style="color:black" ><b>Add Discount -->></b></h3>
+<div style="padding-left: 300px">
+
+<div style="width: 300px;">
+<form  #accForm="ngForm" >
+
+
+
+<div  class="form-group">
+<label for="name" style="color:black"><h4><b>Select Product</b></h4></label>
+<select (change)="onChange($event)" style="width:300px;height:40px;" #idcontrol required>
+  <option *ngFor="let data of products1" [value]="data.productID" >
+    {{data.productName}}
+  </option>
+</select>
+<small id="noHelp" class="form-text text-muted" *ngIf="idcontrol.touched && idcontrol.invalid"><font style="color: red">*Product Required.</font></small>
+
+</div>
+
+    <div class="form-group">
+    <label for="name" style="color:black"><h4><b>Enter Discount</b></h4></label>
+    <input type="number" class="form-control" id="discount" required [(ngModel)]="discount1.discount" name="discount" #discontrol="ngModel">
+    <small id="noHelp" class="form-text text-muted" *ngIf="discontrol.touched && discontrol.invalid"><font style="color: red">*Discount Required.</font></small>
+  </div>
+  <div class="form-group">
+    <label for="name" style="color:black"><h4><b>Start Date</b></h4></label>
+    <input type="date" class="form-control" id="sdate" required [(ngModel)]="discount1.startDate" name="sdate" #startcontrol="ngModel">
+    <small id="namelHelp" class="form-text text-muted" *ngIf="startcontrol.touched && startcontrol.invalid"><font style="color: red">*Start Date Required.</font></small>
+  </div>
+
+  <div class="form-group">
+    <label for="age" style="color:black"><h4><b>End Date</b></h4></label>
+    <input type="date" class="form-control" id="edate" required [(ngModel)]="discount1.endDate" name="edate" #endcontrol="ngModel">
+    <small id="namelHelp" class="form-text text-muted" *ngIf="endcontrol.touched && endcontrol.invalid"><font style="color: red">*End Date Required.</font></small>
+  </div>
+
+
+  <button type="submit" [disabled]="accForm.invalid" class="btn btn-success" (click)="onSubmit()">Submit</button>&nbsp;&nbsp;
+  <button type="reset"  class="btn btn-success">Reset</button>
+</form>
+</div>
+
+<div *ngIf="hidden">
+<br>
+<br>
+<br>
+<h4>You submitted successfully!</h4>
+<button class="btn btn-success" (click)="newDiscount()">OK</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<button type="button" class="btn btn-secondary" (click)="backtodiscount()" >Back To Discount</button>

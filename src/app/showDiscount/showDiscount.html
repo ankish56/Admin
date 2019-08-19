@@ -1,0 +1,67 @@
+<h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-align: center;"> All DISCOUNTS</h1>
+<div style = "text-align: right;"><button type="button" class="btn btn-success" (click)="gotoadddiscount()">Add Discount>></button></div>
+
+
+
+<table class="table table-striped table table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th style="text-align: center">Discount Id</th>
+        <th style="text-align: center">Product</th>
+        <th style="text-align: center">Discount</th>
+        <th style="text-align: center">Start Date</th>
+        <th style="text-align: center">End Date</th>
+        <th colspan="2" style="text-align: center">Action </th>
+
+    </tr>
+    </thead>
+    <tr *ngFor="let data of discount, let i= index">
+        <td style="text-align: center">{{data.discountId}}</td>
+        <td style="text-align: center">{{data.product.productName}}</td>
+        <td style="text-align: center">{{data.discount}}</td>
+        <td style="text-align: center">{{data.startDate}}</td>
+        <td style="text-align: center">{{data.endDate}}</td>
+        <td style="text-align: center"><button type="button" class="btn btn-danger" (click)="deleteDiscount(i)" >Delete</button></td>
+        <td style="text-align: center"><button type="button" class="btn btn-secondary" (click)="updateDiscount(i)" >Update</button></td>
+
+
+    </tr>
+</table>
+<div *ngIf="showUpdate">
+
+    <hr>
+    <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-align: center;">UPDATE DISCOUNT</h1>
+    <table class="table ">
+        <tbody >
+
+
+            <tr>
+                <td>Discount :- </td>
+                <td><input type="number" name="name" [(ngModel)] = "discountvalue" required/></td>
+            </tr>
+            <tr>
+                <td>Start Date</td>
+                <td><input type="date" name="phone" [(ngModel)] = "sdate" required/></td>
+            </tr>
+            <tr>
+                <td>End Date</td>
+                <td><input type="date" name="balance" [(ngModel)] = "edate" required/></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-dark" value="ADD" (click) = "update()">Update Account</button></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div *ngIf="hasUpdated" class="alert alert-success" role="alert">
+            Discount updated successfully!
+            <br>
+            <button class="btn btn-success" (click) = "refresh()"> OK </button>
+      </div>
+
+</div>
+
+<button type="button" class="btn btn-secondary" (click)="backtoadmin()" >Back To Home</button>
+
